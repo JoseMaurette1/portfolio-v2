@@ -47,7 +47,7 @@ function FAQ() {
                 Are you available for freelance work?
               </AccordionTrigger>
               <AccordionContent>
-                Yes! I'm open to freelance opportunities and collaborations. Feel free to reach out via email to discuss your project requirements.
+                Yes! I&apos;m open to freelance opportunities and collaborations. Feel free to reach out via email to discuss your project requirements.
               </AccordionContent>
             </AccordionItem>
 
