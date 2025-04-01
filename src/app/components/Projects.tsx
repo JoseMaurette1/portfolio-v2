@@ -121,14 +121,16 @@ const Projects = () => {
   };
 
   return (
-    <section className="py-16 px-4 relative z-10 bg-transparent">
+    <section className="py-8 md:py-16 px-4 relative z-10 bg-transparent">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <Highlight className="text-zinc-900 text-4xl font-bold">
+        <div className="mb-8 md:mb-12">
+          <Highlight className="text-zinc-900 text-3xl md:text-4xl font-bold">
             Projects
           </Highlight>
         </div>
-        <TimelineComponent data={[...timelineData, portfolioTimelineData]} />
+        <div className="min-h-screen">
+          <TimelineComponent data={[...timelineData, portfolioTimelineData]} />
+        </div>
       </div>
     </section>
   );
