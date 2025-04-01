@@ -1,9 +1,17 @@
-"use client";
-import React, { type SVGProps } from "react";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { Highlight } from "@/components/ui/hero-highlight";
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-function ReactIcon(props: SVGProps<SVGSVGElement>) {
+function ReactIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +28,7 @@ function ReactIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function TypeScriptIcon(props: SVGProps<SVGSVGElement>) {
+function TypeScriptIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 256 256"
@@ -42,7 +50,7 @@ function TypeScriptIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function NextjsIcon(props: SVGProps<SVGSVGElement>) {
+function NextjsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={180}
@@ -114,7 +122,7 @@ function NextjsIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function TailwindCSSIcon(props: SVGProps<SVGSVGElement>) {
+function TailwindCSSIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -139,59 +147,56 @@ function TailwindCSSIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function GitIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92" {...props}>
-      <path fill="#F05133" d="M90.156 41.965 50.036 1.848a5.918 5.918 0 0 0-8.372 0l-8.328 8.332 10.566 10.566a7.03 7.03 0 0 1 7.23 1.684 7.034 7.034 0 0 1 1.671 7.273l10.187 10.184a7.028 7.028 0 0 1 7.278 1.672 7.04 7.04 0 0 1 0 9.957 7.05 7.05 0 0 1-9.965 0 7.044 7.044 0 0 1-1.528-7.66l-9.5-9.497V59.36a7.04 7.04 0 0 1 1.86 11.29 7.04 7.04 0 0 1-9.957 0 7.04 7.04 0 0 1 0-9.958 7.06 7.06 0 0 1 2.304-1.539V33.926a7.049 7.049 0 0 1-3.82-9.234L29.242 14.272 1.73 41.777a5.925 5.925 0 0 0 0 8.371L41.852 90.27a5.925 5.925 0 0 0 8.37 0l39.934-39.934a5.925 5.925 0 0 0 0-8.371" />
-    </svg>
-  );
-}
+export function LearnMore() {
+  const icons = [
+    {
+      Icon: ReactIcon,
+      alt: "React Logo"
+    },
+    {
+      Icon: TypeScriptIcon,
+      alt: "TypeScript Logo"
+    },
+    {
+      Icon: TailwindCSSIcon,
+      alt: "Tailwind Logo"
+    },
+    {
+      Icon: NextjsIcon,
+      alt: "Next.js Logo"
+    }
+  ];
 
-// Array of logos
-const allLogos = [
-  { name: "React", id: 1, img: ReactIcon },
-  { name: "TypeScript", id: 2, img: TypeScriptIcon },
-  { name: "Next.js", id: 3, img: NextjsIcon },
-  { name: "TailwindCSS", id: 4, img: TailwindCSSIcon },
-  { name: "Git", id: 5, img: GitIcon },
-];
-
-const LogoItem = ({ logo }: { logo: typeof allLogos[0] }) => {
-  const Icon = logo.img;
   return (
-    <div className="flex flex-col items-center justify-center gap-2 p-6">
-      <div className="flex h-16 w-16 items-center justify-center">
-        <Icon className="h-12 w-12" />
-      </div>
-      <span className="text-sm font-medium">{logo.name}</span>
-    </div>
-  );
-};
-
-export function SkillsSlider() {
-  return (
-    <div className="space-y-8 py-24">
-      <div className="mx-auto flex max-w-screen-lg w-full flex-col items-center space-y-8">
-        <div className="text-center">
-          <Highlight className="text-zinc-900 text-4xl font-bold">Skills</Highlight>
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" size="lg" className="bg-white text-black hover:bg-white/90">
+          Learn More
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80 p-0">
+        <div className="relative">
+          <Card className="border-0 shadow-none bg-white text-black relative">
+            <CardHeader>
+              <CardTitle>About Me</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <p className="text-black/80 text-lg font-medium">Senior @ Florida International University</p>
+              <p className="text-black/80 text-lg font-medium">Graduating in December 2025</p>
+              <div className="flex flex-wrap gap-2">
+                <p className="text-black/80 text-lg font-semibold tracking-tight">Stack:</p>
+                {icons.map((icon, index) => (
+                  <icon.Icon
+                    key={index}
+                    className="w-6 h-6"
+                    aria-label={icon.alt}
+                  />
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
-
-        <div className="w-full">
-          <InfiniteSlider
-            duration={30}
-            durationOnHover={60}
-            className="py-4"
-          >
-            {allLogos.map((logo) => (
-              <LogoItem key={logo.id} logo={logo} />
-            ))}
-          </InfiniteSlider>
-        </div>
-      </div>
-    </div>
+      </PopoverContent>
+    </Popover>
   );
-}
-
-export default function Skills() {
-  return <SkillsSlider />;
 }

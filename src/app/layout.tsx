@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import { DotPattern } from "@/components/ui/dot-pattern";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <div className="relative z-10">
           {children}
         </div>
+        <Toaster richColors />
       </body>
     </html>
   );

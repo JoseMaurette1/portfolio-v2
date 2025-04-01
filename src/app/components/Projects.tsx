@@ -1,150 +1,134 @@
 "use client"
-import Image from "next/image";
 import React from "react";
-import { Timeline } from "@/components/ui/timeline";
-import { GradientHeading } from "@/components/ui/gradient-heading";
-
+import Image from "next/image";
+import { Highlight } from "@/components/ui/hero-highlight";
+import { PreviewButton } from "@/components/ui/preview-button";
+import { ImageCompare } from "@/app/components/ImageCompare";
+import { TimelineComponent } from "@/components/ui/timeline";
+import { Code2 } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card";
+import { motion } from "framer-motion";
 const Projects = () => {
-  const data = [
+  const projects = [
     {
-      title: "Macrotrue",
-      content: (
-        <div>
-          <p className="text-zinc-50 text-xs md:text-sm font-normal mb-8">
-            A comprehensive customer relationship management system with powerful analytics.
-          </p>
-          <p className="text-zinc-50 text-xs md:text-sm font-normal mb-8">
-            Built with React, NextJS, and TailwindCSS for a responsive and intuitive user interface.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/macro.png"
-              alt="macro"
-              width={300}
-              height={300}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/macro2.png"
-              alt="macro"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/macro3.png"
-              alt="macro"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/macro4.png"
-              alt="macro"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-          </div>
-        </div>
-      ),
+      Icon: () => <Image src="/macrotruelogo.png" alt="Macrotrue Logo" width={48} height={48} className="rounded-full" />,
+      name: "Macrotrue",
+      date: "Mar 2025-Present",
+      description: "A SaaS that helps recommends macro recipes based on your dietary goals.",
+      href: "https://macrotrue.vercel.app",
+      cta: "View Project",
+      image: "/macro.png",
+      stack: ["Next.js", "Tailwind", "TypeScript", "React"]
     },
     {
-      title: "Always",
-      content: (
-        <div>
-          <p className="text-zinc-50 text-xs md:text-sm font-normal mb-8">
-            A music streaming platform with a modern UI and seamless user experience.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/always.png"
-              alt="always"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/always1.png"
-              alt="always"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/always2.png"
-              alt="always"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <Image
-              src="/always3.png"
-              alt="always"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-          </div>
-        </div>
-      ),
+      Icon: () => <Image src="/alwayslogo.png" alt="Always Logo" width={48} height={48} className="rounded-full" />,
+      name: "Always",
+      date: "Dec 2024 - Feb 2025",
+      description: "Interactive app that helps you track your workouts and progress.",
+      href: "https://alwaysv1.vercel.app",
+      cta: "View Project",
+      image: "/always.png",
+      stack: ["Next.js", "Tailwind", "TypeScript", "React"]
     },
     {
-      title: "Skills & Technologies",
-      content: (
-        <div>
-          <p className="text-zinc-50 text-xs md:text-sm font-normal mb-4">
-            Technologies I'm proficient with
-          </p>
-          <div className="mb-8">
-            <div className="flex gap-2 items-center text-zinc-300 text-xs md:text-sm">
-              ✅ React & Next.js for frontend development
-            </div>
-            <div className="flex gap-2 items-center text-zinc-300 text-xs md:text-sm">
-              ✅ TypeScript for type-safe code
-            </div>
-            <div className="flex gap-2 items-center text-zinc-300 text-xs md:text-sm">
-              ✅ TailwindCSS for responsive styling
-            </div>
-            <div className="flex gap-2 items-center text-zinc-300 text-xs md:text-sm">
-              ✅ Git for version control
-            </div>
-            <div className="flex gap-2 items-center text-zinc-300 text-xs md:text-sm">
-              ✅ RESTful APIs and GraphQL
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
-              <h3 className="text-zinc-50 font-medium">Frontend</h3>
-              <p className="text-zinc-300 text-xs text-center mt-2">React, Next.js, TailwindCSS, Framer Motion</p>
-            </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
-              <h3 className="text-zinc-50 font-medium">Languages</h3>
-              <p className="text-zinc-300 text-xs text-center mt-2">TypeScript, JavaScript, HTML, CSS</p>
-            </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
-              <h3 className="text-zinc-50 font-medium">Tools</h3>
-              <p className="text-zinc-300 text-xs text-center mt-2">Git, VS Code, Figma, Vercel</p>
-            </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
-              <h3 className="text-zinc-50 font-medium">Other</h3>
-              <p className="text-zinc-300 text-xs text-center mt-2">REST APIs, GraphQL, UI/UX Design</p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
+      Icon: () => <Image src="/Trailtaleslogo.png" alt="TrailTales Logo" width={48} height={48} className="rounded-full" />,
+      name: "TrailTales",
+      date: "Sep 2024-Dec 2024",
+      description: "Web app that helps you find the best trails for your next adventure.",
+      href: "https://trailtales.vercel.app",
+      cta: "View Project",
+      image: "/tt.png",
+      stack: ["Next.js", "Tailwind", "TypeScript", "React"]
+    }
   ];
+
+  const timelineData = projects.map(project => ({
+    title: project.name,
+    date: project.date,
+    content: (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <Card key={project.name} className="relative overflow-hidden group bg-zinc-900">
+          <CardHeader>
+            <project.Icon />
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Image
+              src={project.image}
+              alt={project.name}
+              width={800}
+              height={450}
+              className="w-full h-auto rounded-lg transition-opacity group-hover:opacity-90"
+            />
+            <CardDescription className="text-white text-base md:text-lg">{project.description}</CardDescription>
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 text-sm rounded-md bg-blue-500 text-white tracking-wide"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </CardContent>
+          <CardFooter>
+            <PreviewButton href={project.href} />
+          </CardFooter>
+          <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+        </Card>
+      </motion.div>
+    )
+  }));
+
+  const portfolioTimelineData = {
+    title: "Portfolio",
+    date: "Mar 2025",
+    content: (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <Card className="relative overflow-hidden group bg-zinc-900">
+          <CardHeader>
+            <Code2 className="h-12 w-12 text-neutral-300" />
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <ImageCompare />
+            <CardDescription className="text-white text-base md:text-lg">
+              Portfolio Website
+            </CardDescription>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "Tailwind", "TypeScript", "React"].map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 text-sm rounded-md bg-blue-500 text-white tracking-wide"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </CardContent>
+          <CardFooter>
+            <PreviewButton href="https://hosedev.vercel.app" />
+          </CardFooter>
+          <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
+        </Card>
+      </motion.div>
+    )
+  };
 
   return (
     <section className="py-16 px-4 relative z-10 bg-transparent">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <GradientHeading variant="secondary" size="md">
-            My Projects
-          </GradientHeading>
+          <Highlight className="text-zinc-900 text-4xl font-bold">
+            Projects
+          </Highlight>
         </div>
-        <Timeline data={data} />
+        <TimelineComponent data={[...timelineData, portfolioTimelineData]} />
       </div>
     </section>
   );

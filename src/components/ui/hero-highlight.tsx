@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
-import React from "react";
+import React, { ReactNode } from "react";
 
 export const HeroHighlight = ({
   children,
@@ -12,8 +12,8 @@ export const HeroHighlight = ({
   className?: string;
   containerClassName?: string;
 }) => {
-  let mouseX = useMotionValue(0);
-  let mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   function handleMouseMove({
     currentTarget,
@@ -21,7 +21,7 @@ export const HeroHighlight = ({
     clientY,
   }: React.MouseEvent<HTMLDivElement>) {
     if (!currentTarget) return;
-    let { left, top } = currentTarget.getBoundingClientRect();
+    const { left, top } = currentTarget.getBoundingClientRect();
 
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
@@ -32,6 +32,9 @@ export const HeroHighlight = ({
     backgroundSize: '16px 16px',
   });
 
+  const left = useMotionTemplate`${mouseX}px`;
+  const top = useMotionTemplate`${mouseY}px`;
+
   return (
     <div
       className={cn(
@@ -40,12 +43,12 @@ export const HeroHighlight = ({
       )}
       onMouseMove={handleMouseMove}
     >
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-70" 
+      <div
+        className="absolute inset-0 pointer-events-none opacity-70"
         style={dotPattern('rgb(212 212 212)')} // neutral-300 for light mode
       />
-      <div 
-        className="absolute inset-0 dark:opacity-70 opacity-0 pointer-events-none" 
+      <div
+        className="absolute inset-0 dark:opacity-70 opacity-0 pointer-events-none"
         style={dotPattern('rgb(38 38 38)')} // neutral-800 for dark mode
       />
       <motion.div
@@ -54,14 +57,14 @@ export const HeroHighlight = ({
           ...dotPattern('rgb(99 102 241)'), // indigo-500
           WebkitMaskImage: useMotionTemplate`
             radial-gradient(
-              200px circle at ${mouseX}px ${mouseY}px,
+              200px circle at ${left} ${top},
               black 0%,
               transparent 100%
             )
           `,
           maskImage: useMotionTemplate`
             radial-gradient(
-              200px circle at ${mouseX}px ${mouseY}px,
+              200px circle at ${left} ${top},
               black 0%,
               transparent 100%
             )
@@ -74,37 +77,20 @@ export const HeroHighlight = ({
   );
 };
 
-export const Highlight = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
+interface HighlightProps {
+  children: ReactNode;
   className?: string;
-}) => {
+}
+
+export function Highlight({ children, className }: HighlightProps) {
   return (
-    <motion.span
-      initial={{
-        backgroundSize: "0% 100%",
-      }}
-      animate={{
-        backgroundSize: "100% 100%",
-      }}
-      transition={{
-        duration: 2,
-        ease: "linear",
-        delay: 0.5,
-      }}
-      style={{
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "left center",
-        display: "inline",
-      }}
+    <span
       className={cn(
-        `relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500`,
-        className
+        "font-bold bg-zinc-200 dark:bg-zinc-800/30 text-zinc-900 dark:text-zinc-100 px-0.5 rounded transition-colors duration-200",
+        className,
       )}
     >
       {children}
-    </motion.span>
+    </span>
   );
-};
+}

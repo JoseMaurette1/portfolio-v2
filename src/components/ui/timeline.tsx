@@ -1,18 +1,47 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
 } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface TimelineEntry {
   title: string;
+  date: string;
   content: React.ReactNode;
 }
 
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
+interface TimelineProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface TimelineItemProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function Timeline({ children, className }: TimelineProps) {
+  return (
+    <div className={cn("relative space-y-8", className)}>
+      <div className="absolute left-4 top-0 h-full w-0.5 bg-zinc-600" />
+      {children}
+    </div>
+  );
+}
+
+export function TimelineItem({ children, className }: TimelineItemProps) {
+  return (
+    <div className={cn("relative pl-12", className)}>
+      <div className="absolute left-0 top-0 h-4 w-4 rounded-full bg-zinc-600" />
+      {children}
+    </div>
+  );
+}
+
+export const TimelineComponent = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -41,9 +70,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         <h2 className="text-lg md:text-4xl mb-4 text-zinc-50 max-w-4xl">
           Here&apos;s a timeline of my journey
         </h2>
-        <p className="text-zinc-300 text-sm md:text-base max-w-sm">
-          I&apos;ve been learning Web Development for the past 2 years.
-         </p>
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
@@ -56,16 +82,26 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-zinc-800 flex items-center justify-center">
                 <div className="h-4 w-4 rounded-full bg-zinc-700 border border-zinc-600 p-2" />
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-zinc-400">
-                {item.title}
-              </h3>
+              <div className="hidden md:block md:pl-20">
+                <h3 className="text-xl md:text-5xl font-bold text-white">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-zinc-500 mt-1">
+                  {item.date}
+                </p>
+              </div>
             </div>
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-zinc-400">
-                {item.title}
-              </h3>
-              {item.content}{" "}
+              <div className="md:hidden">
+                <h3 className="text-2xl font-bold text-zinc-400">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-zinc-500 mt-1">
+                  {item.date}
+                </p>
+              </div>
+              {item.content}
             </div>
           </div>
         ))}
@@ -80,7 +116,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-blue-500 via-blue-400 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>
