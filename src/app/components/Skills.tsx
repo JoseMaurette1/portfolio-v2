@@ -341,7 +341,7 @@ function GitHubIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-// Array of logos
+// Array of all available logos
 const allLogos = [
   { name: "React", id: 1, img: ReactIcon },
   { name: "TypeScript", id: 2, img: TypeScriptIcon },
@@ -358,6 +358,16 @@ const allLogos = [
   { name: "Supabase", id: 13, img: SupabaseIcon },
 ];
 
+// Define the order of logos: frontend first, then backend, then tools
+const orderedLogoIds = [
+  // Frontend
+  1, 2, 3, 4, 8, 9,
+  // Backend
+  5, 6, 12, 13,
+  // Tools
+  7, 10, 11
+];
+
 export function SkillsSlider() {
   return (
     <div className="space-y-8 py-24">
@@ -369,7 +379,11 @@ export function SkillsSlider() {
         </div>
 
         <div className="w-full flex justify-center">
-          <LogoCarousel logos={allLogos} columnCount={4} />
+          <LogoCarousel
+            logos={allLogos}
+            columnCount={4}
+            customOrder={orderedLogoIds}
+          />
         </div>
       </div>
     </div>

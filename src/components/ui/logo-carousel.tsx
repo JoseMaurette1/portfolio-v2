@@ -15,33 +15,6 @@ interface LogoColumnProps {
   currentTime: number;
 }
 
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
-const distributeLogos = (allLogos: Logo[], columnCount: number): Logo[][] => {
-  const shuffled = shuffleArray(allLogos);
-  const columns: Logo[][] = Array.from({ length: columnCount }, () => []);
-
-  shuffled.forEach((logo, index) => {
-    columns[index % columnCount].push(logo);
-  });
-
-  const maxLength = Math.max(...columns.map((col) => col.length));
-  columns.forEach((col) => {
-    while (col.length < maxLength) {
-      col.push(shuffled[Math.floor(Math.random() * shuffled.length)]);
-    }
-  });
-
-  return columns;
-};
-
 const LogoColumn: React.FC<LogoColumnProps> = React.memo(
   ({ logos, index, currentTime }) => {
     const cycleInterval = 2000;
@@ -107,9 +80,10 @@ LogoColumn.displayName = "LogoColumn";
 interface LogoCarouselProps {
   columnCount?: number;
   logos: Logo[];
+  customOrder?: number[];
 }
 
-export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
+export function LogoCarousel({ columnCount = 2, logos, customOrder }: LogoCarouselProps) {
   const [logoSets, setLogoSets] = useState<Logo[][]>([]);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -123,9 +97,32 @@ export function LogoCarousel({ columnCount = 2, logos }: LogoCarouselProps) {
   }, [updateTime]);
 
   useEffect(() => {
-    const distributedLogos = distributeLogos(logos, columnCount);
-    setLogoSets(distributedLogos);
-  }, [logos, columnCount]);
+    // Create a map of logos by ID for easy lookup
+    const logoMap = new Map(logos.map(logo => [logo.id, logo]));
+
+    // If customOrder is provided, use it to order the logos
+    const orderedLogos = customOrder
+      ? customOrder.map(id => logoMap.get(id)).filter(Boolean) as Logo[]
+      : logos;
+
+    // Distribute logos into columns
+    const columns: Logo[][] = Array.from({ length: columnCount }, () => []);
+
+    // Ensure each column has at least one logo
+    orderedLogos.forEach((logo, index) => {
+      columns[index % columnCount].push(logo);
+    });
+
+    // If we have fewer logos than columns, duplicate some logos to fill the columns
+    if (orderedLogos.length < columnCount) {
+      const remainingLogos = [...orderedLogos];
+      for (let i = orderedLogos.length; i < columnCount; i++) {
+        columns[i].push(remainingLogos[i % remainingLogos.length]);
+      }
+    }
+
+    setLogoSets(columns);
+  }, [logos, columnCount, customOrder]);
 
   return (
     <div className="flex space-x-4">
