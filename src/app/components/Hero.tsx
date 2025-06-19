@@ -15,11 +15,12 @@ export const HeroSection: React.FC = () => {
     <div className="relative flex flex-col items-center justify-center min-h-screen py-16">
       <div className="relative z-20 pb-12">
         <div className="relative">
-          <Avatar className="w-48 h-48">
-            <AvatarImage src="/pfp.png" alt="Jose Maurette" />
-            <AvatarFallback>JM</AvatarFallback>
-          </Avatar>
-          <span className="absolute -end-1 -top-1">
+          <div className="relative w-64 h-64 overflow-hidden rounded-full border-4 border-primary shadow-lg">
+            <Avatar className="w-full h-full">
+              <AvatarImage src="/pfp.jpg" alt="Jose Maurette" className="object-cover" />
+            </Avatar>
+          </div>
+          <span className="absolute -end-0 -top-0 right-3">
             <span className="sr-only">Verified</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

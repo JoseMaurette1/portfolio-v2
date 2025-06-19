@@ -20,7 +20,7 @@ function FAQ() {
               </div>
               <div className="flex flex-col gap-3">
                 <h4 className="text-2xl md:text-3xl lg:text-5xl tracking-tighter font-regular">Contact Me</h4>
-                <p className="text-base md:text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
+                <p className="text-base md:text-lg leading-relaxed tracking-tight text-gray-300 max-w-xl">
                   If you have any questions, please reach out to me.
                 </p>
               </div>
