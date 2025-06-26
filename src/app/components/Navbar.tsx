@@ -13,7 +13,7 @@ const Navbar = () => {
         <DockIcon onClick={() => window.open("https://instagram.com/hose_04", "_blank")}>
           <Instagram className="h-6 w-6 text-zinc-200 hover:text-zinc-50" />
         </DockIcon>
-        <DockIcon onClick={() => window.open("https://linkedin.com/in/josemaurette", "_blank")}>
+        <DockIcon onClick={() => window.open("https://linkedin.com/in/maurette", "_blank")}>
           <Linkedin className="h-6 w-6 text-zinc-200 hover:text-zinc-50" />
         </DockIcon>
       </Dock>
