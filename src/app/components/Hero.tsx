@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Navbar from "@/app/components/Navbar";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { toast } from "sonner";
