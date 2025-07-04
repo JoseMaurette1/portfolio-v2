@@ -24,8 +24,8 @@ const Experience = () => {
       name: "Kontaktsource",
       role: "Frontend Developer Intern",
       date: "June 2025 - Present",
-      description: "Spearheaded and maintained seamless, intuitive web experiences for professionals in private equity, investment banking, family offices, and M&A. Our platform is all about facilitating meaningful connections and exclusive opportunities, so I focus on creating sleek, high-performance interfaces that reflect the caliber of our community. From dynamic event dashboards to secure, members-only features, I ensure that every digital touchpoint reinforces trust, professionalism, and innovation.",
-      stack: ["WordPress", "PeepSo", "Amazon SES", "hCaptcha", "CSS", "HTML", "Javascript"],
+      description: "Leveraged frontend development skills to spearhead and maintain a seamless, intuitive web experience for professionals in private equity, investment banking, M&A, and family offices, resulting in platform growth to 70+ active users.",
+      stack: ["WordPress", "Javascript", "HTML", "TailwindCSS", "PeepSo", "Amazon SES", "hCaptcha", "CSS"],
       href: "https://kontaktsource.com",
       logo: "/klogo.png",
       image: "/kback.png"

@@ -13,7 +13,7 @@ const Projects = () => {
     {
       Icon: () => <Image src="/macrotruelogo.png" alt="Macrotrue Logo" width={48} height={48} className="rounded-full" />,
       name: "Macrotrue",
-      date: "Mar 2025-Present",
+      date: "Mar 2025-June 2025",
       description: "A SaaS that helps recommends macro recipes based on your dietary goals.",
       href: "https://macrotrue.vercel.app",
       cta: "View Project",

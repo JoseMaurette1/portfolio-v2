@@ -341,6 +341,25 @@ function GitHubIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function WordPressIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.5 122.5" {...props}>
+      <path
+        fill="#464342"
+        d="M8.7 61.3c0 20.8 12.1 38.8 29.6 47.3L13.3 39.9c-3 6.6-4.6 13.9-4.6 21.4zm91.5-2.5c0-6.5-2.3-11-4.3-14.5-2.7-4.3-5.2-8-5.2-12.3 0-4.8 3.7-9.3 8.8-9.3h.7a54.9 54.9 0 0 0-82.8 9.3h3.3c5.5 0 14-.6 14-.6 2.8-.2 3.2 4 .3 4.3 0 0-2.8.3-6 .5l19 56.5 11.4-34.2-8.1-22.3c-2.8-.2-5.5-.5-5.5-.5-2.8-.2-2.5-4.5.3-4.3 0 0 8.7.6 13.8.6 5.5 0 14-.6 14-.6 2.8-.2 3.2 4 .3 4.3 0 0-2.9.3-6 .5l18.9 56.1 5.2-17.4c2.3-7.3 4-12.5 4-17z"
+      />
+      <path
+        fill="#464342"
+        d="M62.2 65.9 46.8 111a55.1 55.1 0 0 0 33.8-1l-.3-.6-18.1-43.5zm45.3-29.9c.3 2-.4 4.2-1 6.5l-19.8 57.3a54.9 54.9 0 0 0 28.2-52.1c0-4.1-.4-8-1.2-11.7h-6.2z"
+      />
+      <path
+        fill="#464342"
+        d="M61.3 0a61.3 61.3 0 1 0 0 122.5A61.3 61.3 0 0 0 61.3 0zm0 119.7a58.5 58.5 0 1 1 0-117 58.5 58.5 0 0 1 0 117z"
+      />
+    </svg>
+  );
+}
+
 // Array of all available logos
 const allLogos = [
   { name: "React", id: 1, img: ReactIcon },
@@ -356,6 +375,7 @@ const allLogos = [
   { name: "Figma", id: 11, img: FigmaIcon },
   { name: "Node.js", id: 12, img: NodejsIcon },
   { name: "Supabase", id: 13, img: SupabaseIcon },
+  { name: "WordPress", id: 14, img: WordPressIcon },
 ];
 
 // Define the order of logos: frontend first, then backend, then tools
@@ -365,7 +385,7 @@ const orderedLogoIds = [
   // Backend
   5, 6, 12, 13,
   // Tools
-  7, 10, 11
+  7, 10, 11, 14
 ];
 
 export function SkillsSlider() {
